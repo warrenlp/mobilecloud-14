@@ -314,6 +314,7 @@ public class AutoGradingTest {
 
 		// Create three random videos, but use the unique names
 		ArrayList<Video> videos = new ArrayList<Video>();
+		ArrayList<Video> videos2 = new ArrayList<Video>();
 
 		for (int i = 0; i < names.length; ++i) {
 			videos.add(TestData.randomVideo());
@@ -322,7 +323,8 @@ public class AutoGradingTest {
 
 		// Add all the videos to the server
 		for (Video v : videos){
-			readWriteVideoSvcUser1.addVideo(v);
+			Video result = readWriteVideoSvcUser1.addVideo(v);
+			videos2.add(result);
 		}
 
 		// Search for "The Cat"
@@ -333,6 +335,10 @@ public class AutoGradingTest {
 		for (Video v : searchResults) {
 			assertTrue(v.getName().equals(names[0]));
 		}
+		
+//		for (Video v: videos2) {
+//			assertTrue(v.getName().equals(names[0]));
+//		}
 	}
 
 	/**
